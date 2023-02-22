@@ -1,0 +1,73 @@
+body{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #F1F1F1;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.tab{
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%,-50%);
+    
+}
+.tab th{
+    background-color: gray;
+    color: blue;
+    text-align: center;
+    width: 150px;
+    font-size: 20px;
+}
+.tab td{
+    background-color: lightgray;
+    color: green;
+    font-size: 50px;
+    font-weight: bold;
+    width: 200px;
+}
+img:hover{
+    padding: 5px;
+}
+.wybor{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%,-50%);
+}
+.wybor td{
+    background-color: black;
+    border: none;
+    color: white;
+    height: 30px;
+    font-size: 18px;
+}
+.wybor button{
+    background-color: black;
+    color: white;
+}
+table{
+    border: none;
+}
+.sub{
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%,-50%);
+    width: 620px;
+    border: 2px solid black;
+    height: 30px;
+    background: red;
+    color: white;
+    font-size: 110%;
+}
+.zasady{
+    transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 620px;
+    font-size: 20px;
+    border: 2px solid black;
+}

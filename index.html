@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h2 id="title">Zaczyamy nowa gre. Powodzenia</h2>
+    <div class="tab">
+        <table>
+            <tr>
+                <th>Liczba gier</th> <th>Gracz</th> <th>Komputer</th>
+            </tr>
+            <tr>
+                <td id="liczba_g">0</td> <td id="gracz">0</td> <td id="komputer">0</td>
+            </tr>
+        </table>
+    </div>
+    <div class="wybor">
+        <table>
+            <tr>
+                <th><img src="nozyczki.jpg" width="200" height="150"></th>
+                <th><img src="kamien.png" width="200" height="150"></th>
+                <th><img src="papier.jpg" width="200" height="150"></th>
+            </tr>
+            <tr>
+                <td><button id="n" onclick="aktualizuj(1)">Wybieram nożyczki</button></td>
+                <td><button id="k" onclick="aktualizuj(2)">Wybieram kamień</button></td>
+                <td><button id="p"onclick="aktualizuj(3)">Wybieram papier</button></td> 
+            </tr>
+
+        </table>
+    </div>
+    <input type="submit" id="nowa" value="Nowa gra" class="sub" onclick="aktualizuj(0)">
+    <script>
+        let liczba_gier=0;
+        let komunikat="";
+        let kolor_komunikatu="";
+        let wybor_komputer=0, wybor_gracz=0;
+        let punkty_gracz=0, punkty_komputer=0;
+        let nazwy_wybor=[" Nożyczki"," Kamień"," Papier"];
+        function aktualizuj(ktory_przycisk){
+            if(ktory_przycisk==0){
+                liczba_gier=0;
+                komunikat = "Zaczynamy nową gre. Powodzenia";
+                kolor_komunikatu = 'darkblue';
+                punkty_gracz=0;
+                punkty_komputer=0;
+            }
+            else{
+                liczba_gier++;
+                wybor_komputer=Math.floor(Math.random()*3)+1;
+                wybor_gracz=ktory_przycisk;
+                if(wybor_gracz==wybor_komputer){
+                    komunikat = "Remis! Wybraliście" +nazwy_wybor[wybor_gracz-1];
+                    kolor_komunikatu = "orange";
+                    punkty_gracz++;
+                    punkty_komputer++;
+                }
+                else if(((wybor_gracz==1)&&(wybor_komputer==3))||((wybor_gracz==2)&&(wybor_komputer==1))||((wybor_gracz==3)&&(wybor_komputer==2))){
+                    punkty_gracz+=3;
+                    komunikat="Wygrałeś!!! Wybrałeś"+nazwy_wybor[wybor_gracz-1]+" a komputer wybrał "+nazwy_wybor[wybor_komputer-1];
+                    kolor_komunikatu="green";
+                }
+                else{
+                    punkty_komputer+=3;
+                    komunikat="Przegrałeś!!! Wybrałeś"+nazwy_wybor[wybor_gracz-1]+" a komputer wybrał "+nazwy_wybor[wybor_komputer-1];
+                    kolor_komunikatu="red";
+                }
+                if(liczba_gier==10){
+                    document.getElementById("historia").innerHTML="Ostatnia gra <br> Wynik:"+punkty_gracz+":"+punkty_komputer+"<br>";
+                
+                komunikat = "Koniec pojedynku. Wynik to:"+punkty_gracz+":"+punkty_komputer+"";
+                kolor_komunikatu = 'black';
+                punkty_gracz=0;
+                liczba_gier=0;
+                punkty_komputer=0;
+                
+                }
+            }
+            /*if(punkty_gracz<=12){
+                liczba_gier=0;
+                komunikat = "Wygraleś 3 razy z rzędu. Zacznij od nowa";
+                kolor_komunikatu = 'green';
+                punkty_gracz=0;
+                punkty_komputer=0;
+            }
+            if(punkty_komputer<=12){
+                liczba_gier=0;
+                komunikat = "Przegrałeś 3 razy z rzędu. Zacznij od nowa";
+                kolor_komunikatu = '';
+                punkty_gracz=0;
+                punkty_komputer=0;
+            }*/
+            document.getElementById("liczba_g").innerHTML=String(liczba_gier);
+            document.getElementById("gracz").innerHTML = punkty_gracz;
+            document.getElementById("komputer").innerHTML = punkty_komputer;
+            document.getElementById("title").innerHTML=komunikat;
+            document.getElementById("title").style.color=kolor_komunikatu;
+        }
+    </script>
+    <div class="zasady">
+        <h3>Zasady</h3>
+        <p>Na umówiony sygnał gracze wystawiają przed siebie dłoń pokazującą jeden z symboli: papier, kamień lub nożyce.
+            <br>
+            -Papier jest silniejszy od kamienia, ponieważ go owija.<br>
+            -Kamień jest silniejszy od nożyc, ponieważ je tępi.<br>
+            -Nożyce są silniejsze od papieru, ponieważ go tną.<br>
+            </p>
+            
+            <script>
+                
+            </script>
+    </div>
+    <div>
+            <h3 style="margin-top: 40%;" id="historia"></h3>
+    </div>
+</body>
+</html>
